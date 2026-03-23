@@ -403,14 +403,27 @@
               totalScoreCardHtml = `<div class="score-card total-score"><div class="score-title">🏆 ${key}</div><div class="score-value">${scoreValue}</div></div>`;
             } else if(key.includes("ผลการสอบ") || key.includes("ผลการประเมิน")) {
               resultCardHtml = `<div class="score-card result-score"><div class="score-title">📌 ${key}</div><div class="score-value">${scoreValue}</div></div>`;
+            // ... โค้ดส่วนบน (เหมือนเดิม) ...
+
             } else {
-              let icon = '📝';
-              if(key.includes("วิทย์")) icon = '🔬';
-              if(key.includes("คณิต")) icon = '🔢';
-              if(key.includes("อังกฤษ")) icon = '🔤'; 
+              // กำหนดไอคอนเริ่มต้น (ถ้าไม่ตรงกับเงื่อนไขใดเลย)
+              let icon = '📝'; 
+              
+              // ตรวจสอบชื่อวิชา (key) แล้วเปลี่ยนไอคอน
+              if(key.includes("วิทย์") || key.includes("วิทยาศาสตร์")) icon = '🔬';
+              if(key.includes("คณิต") || key.includes("คณิตศาสตร์")) icon = '🔢';
+              if(key.includes("อังกฤษ") || key.includes("ภาษาอังกฤษ")) icon = '🔤'; 
+              if(key.includes("ไทย") || key.includes("ภาษาไทย")) icon = '🇹🇭'; // เพิ่มวิชาภาษาไทย
+              if(key.includes("สังคม") || key.includes("ประวัติศาสตร์")) icon = '🌍'; // เพิ่มวิชาสังคม
+              if(key.includes("ศิลปะ") || key.includes("วาดเขียน")) icon = '🎨'; // เพิ่มวิชาศิลปะ
+              if(key.includes("พละ") || key.includes("พลศึกษา") || key.includes("สุขศึกษา")) icon = '⚽'; // เพิ่มวิชาพละ
               if(key.includes("สัมภาษณ์") || key.includes("ปฏิบัติ") || key.includes("ความสามารถ")) icon = '🌟'; 
+
+              // สร้าง HTML สำหรับแสดงผล
               cardsHtml += `<div class="score-card"><div class="score-title">${icon} ${key}</div><div class="score-value">${scoreValue}</div></div>`;
             }
+
+            // ... โค้ดส่วนล่าง (เหมือนเดิม) ...
           }
         });
 
