@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* 🎨 ธีมสีใหม่: รุ่งอรุณแห่งศรีมโหสถ (ปราจีนบุรี อาร์ต) 🎨 */
+      /* 🎨 ธีมสีเดิม: รุ่งอรุณแห่งศรีมโหสถ (ปราจีนบุรี อาร์ต) 🎨 */
       --color-bodhi-green: #386641;   /* สีเขียวใบโพธิ์แก่ */
       --color-bodhi-dark: #1a3c22;    /* สีเขียวเข้มขลัง */
       --color-bamboo-green: #a7c957;  /* สีเขียวไผ่ตงอ่อน */
@@ -28,9 +28,39 @@
       --card-shadow: 0 15px 35px rgba(26, 60, 34, 0.1); /* เงาสีเขียวเข้มจางๆ */
     }
     
-    body { font-family: 'Kanit', sans-serif; background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%); overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; background-attachment: fixed; color: #333; }
+    /* 🟢 ส่วนที่แก้ไข: เพิ่มภาพพื้นหลังต้นศรีมหาโพธิ์จางๆ 🟢 */
+    body { 
+      font-family: 'Kanit', sans-serif; 
+      background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%); 
+      overflow-x: hidden; 
+      min-height: 100vh; 
+      display: flex; 
+      flex-direction: column; 
+      background-attachment: fixed; 
+      color: #333; 
+      position: relative; /* สำหรับจัดวาง pseudo-element */
+    }
+
+    /* Pseudo-element สำหรับภาพพื้นหลังจางๆ */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* 🟢 นำภาพต้นศรีมหาโพธิ์มาใช้ (ตัวอย่างภาพอ้างอิง image_0.png) 🟢 */
+      background-image: url('https://thumbs.dreamstime.com/b/visitor-pay-buddha-first-bodhi-tree-wat-sri-maha-pot-thailand-prachin-buri-april-115989919.jpg'); 
+      background-repeat: no-repeat;
+      background-position: center bottom; /* จัดวางไว้ตรงกลางล่าง */
+      background-size: cover;
+      /* 🟢 กำหนดความจาง (Opacity) เล็กน้อย 🟢 */
+      opacity: 0.05; 
+      z-index: -2; /* อยู่ใต้ทุกอย่าง รวมถึง emoji-bg */
+      filter: grayscale(100%); /* ทำให้เป็นขาวดำเพื่อความกลมกลืน */
+    }
     
-    /* 🍃 Background Emojis - ผสมผสานไผ่ โพธิ์ ปราสาท 🍃 */
+    /* 🍃 Background Emojis - ผสมผสานไผ่ โพธิ์ ปราสาท (คงเดิม) 🍃 */
     .emoji-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.1; display: flex; justify-content: space-evenly; align-items: center; pointer-events: none; user-select: none; }
     .emoji-column { display: flex; flex-direction: column; gap: 40px; animation: floatVertical 10s ease-in-out infinite; }
     .emoji-column:nth-child(even) { animation-delay: 2s; animation-duration: 11s; }
@@ -61,76 +91,68 @@
     .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
     
     /* 🌿 กล่องคะแนน - ธีมใบโพธิ์ 🌿 */
-    .score-card { background: white; border-radius: 15px; padding: 15px 10px; text-align: center; border: 1px solid #e2e8f0; box-shadow: 0 5px 10px rgba(0,0,0,0.02); transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: center; height: 100%;}
-    .score-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(26, 60, 34, 0.1); border-color: var(--color-bamboo-green); z-index: 2;}
-    .score-title { font-size: clamp(0.85rem, 2.5vw, 1rem); color: var(--color-bark-brown); font-weight: 600; margin-bottom: 5px; }
-    .score-value { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 700; color: var(--primary-color); text-shadow: 1px 1px 2px rgba(0,0,0,0.03); }
+    .score-card { background: white; border-radius: 15px; padding: 15px 10px; text-align: center; border: 1px solid #e2e8f0; box-shadow: 0 10px 20px rgba(0,0,0,0.03); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); display: flex; flex-direction: column; justify-content: center; height: 100%;}
+    .score-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 30px rgba(155, 126, 83, 0.2); border-color: var(--primary-color); z-index: 2;}
+    .score-title { font-size: clamp(0.9rem, 2.5vw, 1.1rem); color: #5a4a38; font-weight: 600; margin-bottom: 5px; }
+    .score-value { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 700; color: var(--primary-color); text-shadow: 1px 1px 2px rgba(0,0,0,0.05); }
     
-    /* การ์ดคะแนนรวม - สีเขียวโพธิ์แก่ตัดทองสัมฤทธิ์ */
-    .score-card.total-score { background: linear-gradient(135deg, var(--primary-dark), var(--primary-color)); color: white; border: none; }
-    .score-card.total-score .score-title { color: rgba(255,255,255,0.9); font-size: clamp(0.9rem, 3vw, 1.2rem);}
-    .score-card.total-score .score-value { color: var(--secondary-color); /* ทองสัมฤทธิ์ */ font-size: clamp(2.2rem, 6vw, 3rem); text-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
+    /* การ์ดคะแนนรวม (คงเดิม) */
+    .score-card.total-score { background: linear-gradient(135deg, var(--secondary-color), #d6bba0); color: white; border: none; }
+    .score-card.total-score .score-title { color: white; font-size: clamp(1rem, 3vw, 1.3rem); font-weight: 700;}
+    .score-card.total-score .score-value { color: white; font-size: clamp(2.2rem, 6vw, 3rem); text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
     
-    /* การ์ดผลสอบ - สีเขียวไผ่ตงนวล */
-    .score-card.result-score { background: linear-gradient(135deg, var(--color-bamboo-green), #bed38c); color: var(--primary-dark); border: none; box-shadow: 0 8px 15px rgba(167, 201, 87, 0.2); }
-    .score-card.result-score .score-title { color: var(--primary-dark); font-size: clamp(0.9rem, 3vw, 1.2rem); font-weight: 700;}
-    .score-card.result-score .score-value { color: var(--primary-dark); font-size: clamp(1.5rem, 4.2vw, 2rem); text-shadow: none; line-height: 1.2; font-weight: 800;}
+    /* การ์ดผลสอบ (คงเดิม) */
+    .score-card.result-score { background: linear-gradient(135deg, var(--secondary-light), #ebd17a); color: var(--primary-dark); border: none; box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2); }
+    .score-card.result-score .score-title { color: var(--primary-dark); font-size: clamp(1rem, 3vw, 1.3rem); font-weight: 700;}
+    .score-card.result-score .score-value { color: var(--primary-dark); font-size: clamp(1.6rem, 4.5vw, 2.2rem); text-shadow: none; line-height: 1.2; font-weight: 800;}
     
-    /* 🎋 Buttons - สีใบไผ่สดใส 🎋 */
-    .btn-custom { border-radius: 12px; padding: clamp(10px, 3vw, 12px); font-size: clamp(0.95rem, 3vw, 1.15rem); font-weight: 600; transition: all 0.3s; border: none; }
-    .btn-login { background-color: var(--color-bodhi-green); color: white; box-shadow: 0 4px 10px rgba(56, 102, 65, 0.3); }
-    .btn-login:hover { background-color: var(--color-bodhi-dark); color: white; transform: translateY(-2px); }
-    /* ปุ่ม Facebook สีฟ้าทวารวดี */
-    .btn-facebook { background: linear-gradient(90deg, #427aa1, #2f5d7c); color: white; }
-    .btn-facebook:hover { background: #2f5d7c; color: white; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(66, 122, 161, 0.3); }
-    /* ปุ่มปิดสีน้ำตาลเปลือกไม้ */
-    .btn-danger-custom { background: linear-gradient(90deg, var(--color-bark-brown), #523b2e); color: white; }
-    .btn-danger-custom:hover { background: #523b2e; color: white; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(107, 78, 61, 0.3); }
+    /* 🎋 Buttons - สีใบไผ่สดใส 🎋 (คงเดิม) */
+    .btn-custom { border-radius: 12px; padding: clamp(10px, 3vw, 12px); font-size: clamp(1rem, 3vw, 1.2rem); font-weight: 600; transition: all 0.3s; }
+    .btn-login { background-color: var(--primary-color); color: white; border: none; box-shadow: 0 5px 15px rgba(155, 126, 83, 0.3); }
+    .btn-login:hover { background-color: var(--primary-dark); color: white; transform: translateY(-3px); }
+    .btn-facebook { background: linear-gradient(90deg, #1877F2, #145dbf); color: white; }
+    .btn-facebook:hover { background: #145dbf; color: white; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(24, 119, 242, 0.4); }
+    .btn-danger-custom { background: linear-gradient(90deg, #ef4444, #dc2626); color: white; border: none; }
+    .btn-danger-custom:hover { background: linear-gradient(90deg, #dc2626, #ef4444); color: white; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4); }
     
-    /* ปุ่ม Admin ลอยสีขาวนวล */
-    .btn-admin-float { position: fixed; bottom: 15px; left: 15px; background: rgba(255, 255, 255, 0.95); color: var(--primary-color); border: 1px solid rgba(56, 102, 65, 0.15); border-radius: 20px; padding: 8px 15px; font-size: 0.9rem; font-weight: 600; cursor: pointer; backdrop-filter: blur(10px); box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: all 0.3s; z-index: 1000; }
-    .btn-admin-float:hover { background: var(--secondary-light); color: var(--primary-color); transform: translateY(-2px); }
+    .btn-admin-float { position: fixed; bottom: 15px; left: 15px; background: rgba(255, 255, 255, 0.95); color: var(--primary-color); border: 2px solid rgba(155, 126, 83, 0.2); border-radius: 20px; padding: 8px 15px; font-size: 0.95rem; font-weight: 600; cursor: pointer; backdrop-filter: blur(10px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: all 0.3s; z-index: 1000; }
+    .btn-admin-float:hover { background: var(--primary-color); color: white; transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
     
-    /* 🏛️ Footer - ธีมอารยธรรมทวารวดี 🏛️ */
-    .footer { margin-top: auto; background-color: var(--primary-dark); color: white; text-align: center; padding: 15px 10px; font-size: clamp(0.75rem, 2vw, 0.9rem); letter-spacing: 0.5px; border-top: 3px solid var(--secondary-color); position: relative; z-index: 10; opacity: 0.95; }
+    .footer { margin-top: auto; background-color: var(--primary-dark); color: white; text-align: center; padding: 15px 10px; font-size: clamp(0.8rem, 2vw, 0.95rem); letter-spacing: 0.5px; border-top: 3px solid var(--secondary-light); position: relative; z-index: 10; }
     
     #dashboardSection, #adminSection, #smallLogo, #obecLogo { display: none; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-    @keyframes popIn { from { opacity: 0; transform: scale(0.98) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+    @keyframes popIn { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
 
-    /* Media Queries for Mobile */
+    /* Media Queries for Mobile (คงเดิม) */
     @media (max-width: 576px) { 
-      .header-content { padding: 0 45px; }
+      .header-content { padding: 0 50px; }
       .summary-grid { grid-template-columns: 1fr; gap: 10px;}
-      .btn-admin-float { bottom: 10px; left: 10px; font-size: 0.75rem; padding: 6px 12px; } 
-      .card-custom { padding: 1.25rem !important; border-radius: 15px; }
-      .result-block { padding: 0.75rem !important; border-radius: 12px; }
-      .form-control-lg { font-size: 1.1rem !important; }
+      .btn-admin-float { bottom: 10px; left: 10px; font-size: 0.8rem; padding: 6px 12px; } 
+      .card-custom { padding: 1.5rem !important; }
+      .result-block { padding: 1rem !important; }
+      .fs-4 { font-size: 1.25rem !important; }
+      .fs-5 { font-size: 1.1rem !important; }
     }
   </style>
 </head>
 <body>
 
   <div class="emoji-bg">
-    <div class="emoji-column"><span>🌿</span><span>🎋</span><span>🏛️</span><span>📱</span></div>
-    <div class="emoji-column"><span>🏫</span><span>💻</span><span>🎓</span><span>📜</span></div>
-    <div class="emoji-column"><span>🎋</span><span>🔬</span><span>🎤</span><span>📓</span></div>
+    <div class="emoji-column"><span>🎒</span><span>✏️</span><span>📏</span><span>📱</span></div>
+    <div class="emoji-column"><span>📚</span><span>💻</span><span>🎓</span><span>🏫</span></div>
+    <div class="emoji-column"><span>🚀</span><span>🔬</span><span>🎤</span><span>📓</span></div>
     <div class="emoji-column d-none d-sm-flex"><span>💡</span><span>📝</span><span>🏆</span><span>🖊️</span></div>
-    <div class="emoji-column d-none d-md-flex"><span>🌟</span><span>📜</span><span>🌿</span><span>📈</span></div>
+    <div class="emoji-column d-none d-md-flex"><span>🌟</span><span>🧬</span><span>🎯</span><span>📈</span></div>
   </div>
 
   <div class="header-bar">
     <img src="https://img1.pic.in.th/images/-a33fe26d19c05654.png" id="smallLogo" class="logo-img logo-small" alt="โลโก้โรงเรียน">
     
     <div class="header-content">
-      <div class="header-title pt-1" style="color: #FFD700; font-size: clamp(1.2rem, 3.5vw, 2.2rem);">
-        🎯 ระบบรายงานผลคะแนนสอบรายบุคคล<br>
-        <span style="font-size: clamp(0.9rem, 2.5vw, 1.5rem);">✨ นักเรียนห้องเรียนปกติ และนักเรียนความสามารถพิเศษ ✨</span>
-      </div> 
-      
-      <div class="header-subtitle mt-2 fw-bold" style="color: #ffffff;">
-        ระดับชั้นมัธยมศึกษาปีที่ 1 และ 4<br>
-        โรงเรียนปราจิณราษฎรอำรุง
-      </div>
+      <div class="header-title pt-1">🎯 ระบบรายงานผลคะแนนสอบรายบุคคล</div> 
+      <div class="header-subtitle mt-2 fw-bold" style="color: var(--secondary-light);">✨ นักเรียนห้องเรียนปกติ และนักเรียนความสามารถพิเศษ ✨</div>
+      <div class="header-subtitle mt-1">ระดับชั้นมัธยมศึกษาปีที่ 1 และ 4</div>
+      <div class="header-subtitle mt-1 fw-bold">โรงเรียนปราจิณราษฎรอำรุง</div>
     </div>
 
     <img src="https://img1.pic.in.th/images/-eeef84f01cc1573b.png" id="obecLogo" class="logo-img logo-obec" alt="โลโก้ สพฐ.">
@@ -151,12 +173,12 @@
         </div>
 
         <div class="card card-custom p-4 pb-5">
-          <h4 class="text-center mb-4" style="color: var(--primary-color); font-weight: 700; font-size: clamp(1.1rem, 4vw, 1.4rem);">🔐 เข้าสู่ระบบเพื่อตรวจสอบคะแนน</h4>
+          <h4 class="text-center mb-4" style="color: var(--primary-color); font-weight: 700; font-size: clamp(1.2rem, 4vw, 1.5rem);">🔐 เข้าสู่ระบบเพื่อดูคะแนน</h4>
           <form id="searchForm" onsubmit="handleSearch(event)">
             <div class="mb-4">
-              <input type="text" class="form-control form-control-lg text-center fs-5" id="studentIdInput" placeholder="✍️ กรอกเลขประจำตัวประชาชน" required style="border-radius: 12px; border: 1px solid var(--primary-color); background-color: var(--secondary-light);">
+              <input type="text" class="form-control form-control-lg text-center fs-5" id="studentIdInput" placeholder="✍️ กรอกเลขประจำตัวประชาชน" required style="border-radius: 15px; border: 2px solid var(--primary-color); background-color: var(--secondary-light);">
             </div>
-            <button type="submit" class="btn btn-login btn-custom w-100 mb-2">🚀 เข้าสู่ระบบเพื่อตรวจสอบคะแนน</button>
+            <button type="submit" class="btn btn-login btn-custom w-100 mb-2">🚀 เข้าสู่ระบบเพื่อดูคะแนน</button>
           </form>
         </div>
       </div>
@@ -165,21 +187,21 @@
     <div id="adminSection" class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-5">
         <div class="card card-custom p-4">
-          <h4 class="text-center mb-4" style="font-weight: 700; color: var(--primary-color); font-size: clamp(1.1rem, 4vw, 1.4rem);">👨‍💻 ผู้ดูแลระบบ (Admin)</h4>
+          <h4 class="text-center mb-4" style="font-weight: 700; color: var(--primary-color); font-size: clamp(1.2rem, 4vw, 1.5rem);">👨‍💻 ผู้ดูแลระบบ (Admin)</h4>
           
           <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
-            <div class="mb-3"><input type="text" class="form-control fs-6 p-3" id="adminUser" placeholder="👤 Username" required style="border-radius: 10px; border: 1px solid var(--color-bark-brown);"></div>
-            <div class="mb-4"><input type="password" class="form-control fs-6 p-3" id="adminPass" placeholder="🔑 Password" required style="border-radius: 10px; border: 1px solid var(--color-bark-brown);"></div>
-            <button type="submit" class="btn w-100 mb-3 btn-custom fw-bold" style="background-color: var(--color-bamboo-green); color: white;">🔓 เข้าสู่ระบบจัดการ</button>
-            <button type="button" class="btn btn-secondary w-100 btn-custom" style="background-color: #e2e8f0; color: #333;" onclick="showSearch()">⬅️ กลับหน้าหลัก</button>
+            <div class="mb-3"><input type="text" class="form-control fs-6 p-3" id="adminUser" placeholder="👤 Username" required style="border-radius: 12px; border: 1px solid var(--primary-color);"></div>
+            <div class="mb-4"><input type="password" class="form-control fs-6 p-3" id="adminPass" placeholder="🔑 Password" required style="border-radius: 12px; border: 1px solid var(--primary-color);"></div>
+            <button type="submit" class="btn w-100 mb-3 btn-custom fw-bold" style="background-color: var(--secondary-light); color: var(--primary-dark);">🔓 เข้าสู่ระบบจัดการ</button>
+            <button type="button" class="btn btn-secondary w-100 btn-custom" onclick="showSearch()">⬅️ กลับหน้าหลัก</button>
           </form>
 
           <div id="adminControlPanel" style="display: none;">
             <div class="mb-3">
               <label class="form-label fw-bold" style="color: var(--primary-color);">📢 แจ้งข่าว / อัปเดตประกาศระบบ</label>
-              <textarea class="form-control" id="adminAnnounceText" rows="4" placeholder="พิมพ์ข้อความที่ต้องการแจ้งเตือน... (ปล่อยว่างหากต้องการลบประกาศ)" style="border-radius: 10px; border: 1px solid var(--color-bark-brown);"></textarea>
+              <textarea class="form-control" id="adminAnnounceText" rows="4" placeholder="พิมพ์ข้อความที่ต้องการแจ้งเตือน... (ปล่อยว่างหากต้องการลบประกาศ)" style="border-radius: 12px; border: 1px solid var(--primary-color);"></textarea>
             </div>
-            <button class="btn btn-success w-100 mb-3 btn-custom fw-bold" style="background-color: var(--color-bodhi-green); border: none;" onclick="saveAnnouncement()">💾 บันทึกประกาศขึ้นระบบ</button>
+            <button class="btn btn-success w-100 mb-3 btn-custom fw-bold" style="background-color: #10b981; border: none;" onclick="saveAnnouncement()">💾 บันทึกประกาศขึ้นระบบ</button>
             <hr>
             <button class="btn btn-login w-100 mb-3 btn-custom fw-bold" onclick="openDatabase()">🗄️ เปิดฐานข้อมูล (Google Sheet)</button>
             <button class="btn btn-danger-custom w-100 btn-custom" onclick="logoutAdmin()">🚪 ออกจากระบบแอดมิน</button>
@@ -221,7 +243,7 @@
   </footer>
 
   <script>
-    // 🛑 นำ Web App URL อันใหม่ที่ได้มาใส่ตรงนี้ 🛑
+    // 🛑 อย่าลืมใส่ Web App URL ที่ Deploy แล้วตรงนี้นะครับ 🛑
     const API_URL = "https://script.google.com/macros/s/AKfycbxf0MGu6j93VwMuVlVp220E35cvDjiwnkb_G-zqW6n97zimadLPydOZDqoi24CSgSA/exec";
 
     let currentUser = '';
@@ -305,7 +327,7 @@
         document.getElementById('adminControlPanel').style.display = 'block';
         fetchAnnouncement(); 
       } else {
-        Swal.fire({ icon: 'error', title: '❌ เข้าสู่ระบบล้มเหลว', text: res.message, confirmButtonColor: '#153265' });
+        Swal.fire({ icon: 'error', title: '❌ เข้าสู่ระบบล้มเหลว', text: res.message, confirmButtonColor: '#9b7e53' });
       }
     }
 
@@ -319,7 +341,7 @@
         Swal.fire({ icon: 'success', title: '✅ บันทึกสำเร็จ!', text: 'อัปเดตประกาศเรียบร้อยแล้ว', timer: 1500, showConfirmButton: false });
         fetchAnnouncement(); 
       } else {
-        Swal.fire({ icon: 'error', title: 'ข้อผิดพลาดในการบันทึก', text: res.message, confirmButtonColor: '#153265' });
+        Swal.fire({ icon: 'error', title: 'ข้อผิดพลาดในการบันทึก', text: res.message, confirmButtonColor: '#9b7e53' });
       }
     }
 
@@ -336,7 +358,7 @@
         html: '<b>ระบบกำลังสืบค้นข้อมูลให้ครับ</b>',
         allowOutsideClick: false,
         background: '#fff',
-        backdrop: `rgba(21, 50, 101, 0.4)`,
+        backdrop: `rgba(155, 126, 83, 0.4)`, /* สีกากีโปร่งแสง */
         didOpen: () => { Swal.showLoading(); }
       });
 
@@ -347,7 +369,7 @@
         renderDashboard(response.results); 
         showDashboard();
       } else {
-        Swal.fire({ icon: 'error', title: '❌ ไม่พบข้อมูล', text: response.message, confirmButtonColor: '#153265' }); 
+        Swal.fire({ icon: 'error', title: '❌ ไม่พบข้อมูล', text: response.message, confirmButtonColor: '#9b7e53' }); 
       }
     }
 
@@ -364,7 +386,7 @@
         let totalScoreCardHtml = ''; let resultCardHtml = '';
         
         if(sheetName) {
-           infoHtml += `<div class="mb-3 border-bottom pb-2"><span class="text-secondary fw-bold" style="font-size: clamp(0.9rem, 2.5vw, 1rem);">ระดับชั้น/แผนการเรียน :</span> <strong style="color: var(--primary-dark); background: var(--secondary-color); padding: 5px 12px; border-radius: 8px; font-size: clamp(1rem, 3vw, 1.25rem);" class="ms-1 ms-md-2 d-inline-block mt-1 mt-sm-0">🎯 ${sheetName}</strong></div>`;
+           infoHtml += `<div class="mb-3 border-bottom pb-2"><span class="text-secondary fw-bold" style="font-size: clamp(0.9rem, 2.5vw, 1rem);">ระดับชั้น/แผนการเรียน :</span> <strong style="color: var(--primary-dark); background: var(--secondary-light); padding: 5px 12px; border-radius: 8px; font-size: clamp(1rem, 3vw, 1.25rem);" class="ms-1 ms-md-2 d-inline-block mt-1 mt-sm-0">🎯 ${sheetName}</strong></div>`;
         }
 
         const infoFields = ['ระดับชั้น/โครงการ', 'รหัสประจำตัวประชาชน', 'รหัส', 'ชื่อ-สกุล', 'โรงเรียนเดิม']; 
@@ -398,13 +420,13 @@
           <div class="result-block mb-4 p-3 rounded-4" style="background: rgba(255,255,255,0.7); border: 2px dashed var(--accent-brown);">
             <div class="mb-4 bg-white p-3 p-md-4 rounded-4 border shadow-sm" style="border-color: var(--primary-color) !important;">
               <div class="d-flex align-items-center mb-3 pb-2 border-bottom border-2" style="border-color: var(--primary-color) !important;">
-                <h4 class="m-0" style="color: var(--primary-color); font-weight: 700; font-size: clamp(1.1rem, 3.5vw, 1.4rem);">👤 ข้อมูลนักเรียน</h4>
+                <h4 class="m-0" style="color: var(--primary-dark); font-weight: 700; font-size: clamp(1.1rem, 3.5vw, 1.4rem);">👤 ข้อมูลนักเรียน</h4>
               </div>
               ${infoHtml}
             </div>
             
             <div class="d-flex align-items-center mb-3 pb-2 border-bottom border-2" style="border-color: var(--primary-color) !important;">
-              <h4 class="m-0" style="color: var(--primary-color); font-weight: 700; font-size: clamp(1.1rem, 3.5vw, 1.4rem);">📊 รายงานคะแนนสอบ</h4>
+              <h4 class="m-0" style="color: var(--primary-dark); font-weight: 700; font-size: clamp(1.1rem, 3.5vw, 1.4rem);">📊 รายงานคะแนนสอบ</h4>
             </div>
             
             <div class="score-grid">${cardsHtml}</div>
