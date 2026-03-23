@@ -199,7 +199,7 @@
 
   <script>
     // 🛑 นำ Web App URL ของ "ห้องเรียนปกติ" อันใหม่มาวางตรงนี้ครับ 🛑
-    const API_URL = "ใส่_URL_ที่ได้จาก_Apps_Script_อันใหม่ตรงนี้";
+    const API_URL = "https://script.google.com/macros/s/AKfycbxf0MGu6j93VwMuVlVp220E35cvDjiwnkb_G-zqW6n97zimadLPydOZDqoi24CSgSA/exec";
 
     let currentUser = '';
     let currentPass = '';
