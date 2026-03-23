@@ -28,7 +28,6 @@
       --card-shadow: 0 15px 35px rgba(26, 60, 34, 0.1); /* เงาสีเขียวเข้มจางๆ */
     }
     
-    /* 🟢 ส่วนที่แก้ไข: เพิ่มภาพพื้นหลังต้นศรีมหาโพธิ์จางๆ 🟢 */
     body { 
       font-family: 'Kanit', sans-serif; 
       background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%); 
@@ -38,10 +37,10 @@
       flex-direction: column; 
       background-attachment: fixed; 
       color: #333; 
-      position: relative; /* สำหรับจัดวาง pseudo-element */
+      position: relative;
     }
 
-    /* Pseudo-element สำหรับภาพพื้นหลังจางๆ */
+    /* Pseudo-element สำหรับภาพพื้นหลังต้นศรีมหาโพธิ์ที่ชัดเจนขึ้น */
     body::before {
       content: "";
       position: fixed;
@@ -49,15 +48,16 @@
       left: 0;
       width: 100%;
       height: 100%;
-      /* 🟢 นำภาพต้นศรีมหาโพธิ์มาใช้ (ตัวอย่างภาพอ้างอิง image_0.png) 🟢 */
+      /* 🟢 ใช้ภาพต้นศรีมหาโพธิ์ดั้งเดิม แต่ชัดเจนขึ้น 🟢 */
       background-image: url('https://thumbs.dreamstime.com/b/visitor-pay-buddha-first-bodhi-tree-wat-sri-maha-pot-thailand-prachin-buri-april-115989919.jpg'); 
       background-repeat: no-repeat;
-      background-position: center bottom; /* จัดวางไว้ตรงกลางล่าง */
+      background-position: center bottom;
       background-size: cover;
-      /* 🟢 กำหนดความจาง (Opacity) เล็กน้อย 🟢 */
-      opacity: 0.05; 
-      z-index: -2; /* อยู่ใต้ทุกอย่าง รวมถึง emoji-bg */
-      filter: grayscale(100%); /* ทำให้เป็นขาวดำเพื่อความกลมกลืน */
+      /* 🟢 เพิ่มความจางที่เหมาะสมเพื่อให้มองออกว่าเป็นรูปต้นไม้ 🟢 */
+      opacity: 0.15; 
+      z-index: -2;
+      /* 🟢 ปรับเป็นระดับสีเทาและเพิ่มความสว่างเพื่อให้ดูกลมกลืน 🟢 */
+      filter: grayscale(100%) brightness(1.2); 
     }
     
     /* 🍃 Background Emojis - ผสมผสานไผ่ โพธิ์ ปราสาท (คงเดิม) 🍃 */
@@ -65,48 +65,46 @@
     .emoji-column { display: flex; flex-direction: column; gap: 40px; animation: floatVertical 10s ease-in-out infinite; }
     .emoji-column:nth-child(even) { animation-delay: 2s; animation-duration: 11s; }
     .emoji-column:nth-child(3n) { animation-delay: 1s; animation-duration: 9s; }
-    /* อิโมจิสัญลักษณ์ปราจีนบุรี */
-    .emoji-column span { font-size: clamp(2rem, 5vw, 3.5rem); filter: sepia(50%) hue-rotate(80deg) saturate(50%); /* ปรับสีอิโมจิให้เข้าโทนเขียว/น้ำตาล */ }
+    .emoji-column span { font-size: clamp(2rem, 5vw, 3.5rem); filter: sepia(50%) hue-rotate(80deg) saturate(50%); }
     @keyframes floatVertical { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(3deg); } }
     
-    /* 🏛️ Header Responsive - ธีมปราสาททวารวดี 🏛️ */
+    /* Header Responsive (คงเดิม) */
     .header-bar { background: linear-gradient(135deg, var(--primary-dark), var(--primary-color)); color: white; border-bottom: 5px solid var(--secondary-color); padding: 15px 10px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.2); position: relative; display: flex; justify-content: center; align-items: center; min-height: 120px;}
     .header-content { max-width: 800px; margin: 0 auto; z-index: 2; padding: 0 75px; }
-    .header-title { font-weight: 700; font-size: clamp(1.1rem, 3.8vw, 2.2rem); text-shadow: 2px 2px 4px rgba(0,0,0,0.4); letter-spacing: 0.5px; color: var(--color-bamboo-green); /* หัวข้อสีเขียวไผ่ */ line-height: 1.3;}
+    
+    /* 🟢 ปรับลดขนาดฟ้อนต์ด้วย clamp() 🟢 */
+    .header-title { font-weight: 700; font-size: clamp(1.2rem, 3.5vw, 2.2rem); text-shadow: 2px 2px 4px rgba(0,0,0,0.4); letter-spacing: 0.5px; line-height: 1.3;}
     .header-subtitle { font-size: clamp(0.8rem, 2.5vw, 1.1rem); font-weight: 400; color: #ffffff; line-height: 1.4; opacity: 0.9; }
     
-    /* Logos Responsive */
+    /* Logos Responsive (คงเดิม) */
     @keyframes playfulWiggle { 0%, 100% { transform: rotate(0deg) scale(1); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); } 25% { transform: rotate(2deg) scale(1.03); } 75% { transform: rotate(-2deg) scale(0.99); } }
     .logo-img { transition: all 0.3s ease; position: absolute; top: 50%; transform: translateY(-50%); z-index: 5; }
     .logo-small { left: 15px; width: clamp(45px, 10vw, 75px); animation: playfulWiggle 6s ease-in-out infinite; transform-origin: center left;}
     .logo-obec { right: 15px; width: clamp(40px, 9vw, 65px); animation: playfulWiggle 7s ease-in-out infinite reverse; transform-origin: center right;}
     .logo-large { max-width: clamp(100px, 20vw, 150px); animation: playfulWiggle 5s ease-in-out infinite; position: static; transform: none; margin-top: -20px;}
     
-    /* 📜 Cards & Grids - โทนกระดาษโบราณ 📜 */
+    /* 📜 Cards & Grids (คงเดิม) 📜 */
     .card-custom { background: var(--glass-bg); border-radius: 20px; box-shadow: var(--card-shadow); border: 1px solid rgba(56, 102, 65, 0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
-    /* กล่องประกาศสีเขียวนวล */
     .announcement-box { background: #f1f8e9; border-left: 6px solid var(--color-bamboo-green); border-radius: 12px; padding: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); text-align: left; display: none; }
     
     .score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; margin-top: 15px; margin-bottom: 15px; }
     .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
     
-    /* 🌿 กล่องคะแนน - ธีมใบโพธิ์ 🌿 */
-    .score-card { background: white; border-radius: 15px; padding: 15px 10px; text-align: center; border: 1px solid #e2e8f0; box-shadow: 0 10px 20px rgba(0,0,0,0.03); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); display: flex; flex-direction: column; justify-content: center; height: 100%;}
-    .score-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 30px rgba(155, 126, 83, 0.2); border-color: var(--primary-color); z-index: 2;}
-    .score-title { font-size: clamp(0.9rem, 2.5vw, 1.1rem); color: #5a4a38; font-weight: 600; margin-bottom: 5px; }
-    .score-value { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 700; color: var(--primary-color); text-shadow: 1px 1px 2px rgba(0,0,0,0.05); }
+    /* 🌿 กล่องคะแนน (คงเดิม) 🌿 */
+    .score-card { background: white; border-radius: 15px; padding: 15px 10px; text-align: center; border: 1px solid #e2e8f0; box-shadow: 0 5px 10px rgba(0,0,0,0.02); transition: all 0.3s ease; display: flex; flex-direction: column; justify-content: center; height: 100%;}
+    .score-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(26, 60, 34, 0.1); border-color: var(--color-bamboo-green); z-index: 2;}
+    .score-title { font-size: clamp(0.85rem, 2.5vw, 1rem); color: var(--color-bark-brown); font-weight: 600; margin-bottom: 5px; }
+    .score-value { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 700; color: var(--primary-color); text-shadow: 1px 1px 2px rgba(0,0,0,0.03); }
     
-    /* การ์ดคะแนนรวม (คงเดิม) */
     .score-card.total-score { background: linear-gradient(135deg, var(--secondary-color), #d6bba0); color: white; border: none; }
     .score-card.total-score .score-title { color: white; font-size: clamp(1rem, 3vw, 1.3rem); font-weight: 700;}
     .score-card.total-score .score-value { color: white; font-size: clamp(2.2rem, 6vw, 3rem); text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
     
-    /* การ์ดผลสอบ (คงเดิม) */
     .score-card.result-score { background: linear-gradient(135deg, var(--secondary-light), #ebd17a); color: var(--primary-dark); border: none; box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2); }
     .score-card.result-score .score-title { color: var(--primary-dark); font-size: clamp(1rem, 3vw, 1.3rem); font-weight: 700;}
     .score-card.result-score .score-value { color: var(--primary-dark); font-size: clamp(1.6rem, 4.5vw, 2.2rem); text-shadow: none; line-height: 1.2; font-weight: 800;}
     
-    /* 🎋 Buttons - สีใบไผ่สดใส 🎋 (คงเดิม) */
+    /* 🎋 Buttons 🎋 (คงเดิม) */
     .btn-custom { border-radius: 12px; padding: clamp(10px, 3vw, 12px); font-size: clamp(1rem, 3vw, 1.2rem); font-weight: 600; transition: all 0.3s; }
     .btn-login { background-color: var(--primary-color); color: white; border: none; box-shadow: 0 5px 15px rgba(155, 126, 83, 0.3); }
     .btn-login:hover { background-color: var(--primary-dark); color: white; transform: translateY(-3px); }
@@ -149,10 +147,15 @@
     <img src="https://img1.pic.in.th/images/-a33fe26d19c05654.png" id="smallLogo" class="logo-img logo-small" alt="โลโก้โรงเรียน">
     
     <div class="header-content">
-      <div class="header-title pt-1">🎯 ระบบรายงานผลคะแนนสอบรายบุคคล</div> 
-      <div class="header-subtitle mt-2 fw-bold" style="color: var(--secondary-light);">✨ นักเรียนห้องเรียนปกติ และนักเรียนความสามารถพิเศษ ✨</div>
-      <div class="header-subtitle mt-1">ระดับชั้นมัธยมศึกษาปีที่ 1 และ 4</div>
-      <div class="header-subtitle mt-1 fw-bold">โรงเรียนปราจิณราษฎรอำรุง</div>
+      <div class="header-title pt-1" style="color: #FFD700;">
+        🎯 ระบบรายงานผลคะแนนสอบรายบุคคล<br>
+        <span style="font-size: clamp(0.9rem, 2.5vw, 1.5rem); color: #FFD700;">✨ นักเรียนห้องเรียนปกติ และนักเรียนความสามารถพิเศษ ✨</span>
+      </div> 
+      
+      <div class="header-subtitle mt-2 fw-bold" style="color: #ffffff;">
+        ระดับชั้นมัธยมศึกษาปีที่ 1 และ 4<br>
+        โรงเรียนปราจิณราษฎรอำรุง
+      </div>
     </div>
 
     <img src="https://img1.pic.in.th/images/-eeef84f01cc1573b.png" id="obecLogo" class="logo-img logo-obec" alt="โลโก้ สพฐ.">
