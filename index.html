@@ -9,15 +9,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      /* 🛑 เปลี่ยนธีมสีใหม่: โทน กากี เหลือง ทอง ขาว น้ำตาล 🛑 */
-      --primary-color: #78350f;     /* น้ำตาลเข้ม (Dark Brown) */
-      --primary-dark: #451a03;      /* น้ำตาลดำ (Darker Brown) */
-      --secondary-color: #f59e0b;   /* ทอง (Amber/Gold) */
-      --secondary-light: #fbbf24;  /* เหลืองทองอ่อน (Light Gold) */
-      --bg-gradient-1: #e7dcc8;     /* กากี/เบจ (Khaki/Beige) */
-      --bg-gradient-2: #fffbeb;     /* ขาวครีม (Cream/White) */
+      /* 🛑 เปลี่ยนธีมสีใหม่: เหลืองทอง น้ำเงิน ขาว ฟ้า น้ำตาล 🛑 */
+      --primary-color: #153265;     /* น้ำเงิน (Navy Blue) - สีหลักและเส้นขอบ */
+      --primary-dark: #0d2040;      /* น้ำเงินเข้ม (Dark Navy) */
+      --secondary-color: #d4a017;   /* เหลืองทอง (Yellow Gold) */
+      --secondary-light: #f3c346;   /* เหลืองทองสว่าง (Light Gold) */
+      --accent-brown: #8b4513;      /* น้ำตาล (Brown) - ใช้เป็นขอบตัดเส้นด้านใน */
+      --bg-gradient-1: #dbeafe;     /* ฟ้าอ่อน (Light Blue) */
+      --bg-gradient-2: #ffffff;     /* ขาว (White) */
       --glass-bg: rgba(255, 255, 255, 0.95);
-      --card-shadow: 0 20px 40px rgba(120, 53, 15, 0.1); /* เงาสีน้ำตาลอ่อน */
+      --card-shadow: 0 20px 40px rgba(21, 50, 101, 0.15); /* เงาสีน้ำเงิน */
     }
     body { font-family: 'Kanit', sans-serif; background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 100%); overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; background-attachment: fixed; }
     
@@ -44,34 +45,36 @@
     
     /* Cards & Grids */
     .card-custom { background: var(--glass-bg); border-radius: 25px; box-shadow: var(--card-shadow); border: 2px solid rgba(255,255,255,0.8); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
-    .announcement-box { background: #fff8e1; border-left: 6px solid var(--secondary-color); border-radius: 15px; padding: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: left; display: none; }
+    .announcement-box { background: #fef3c7; border-left: 6px solid var(--secondary-color); border-radius: 15px; padding: 15px; margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: left; display: none; }
     
     .score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 15px; margin-top: 15px; margin-bottom: 15px; }
     .summary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
     
     .score-card { background: white; border-radius: 20px; padding: 15px 10px; text-align: center; border: 2px solid #e2e8f0; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); display: flex; flex-direction: column; justify-content: center; height: 100%;}
-    .score-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 30px rgba(120, 53, 15, 0.1); border-color: var(--primary-color); z-index: 2;}
+    .score-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 15px 30px rgba(21, 50, 101, 0.15); border-color: var(--primary-color); z-index: 2;}
     .score-title { font-size: clamp(0.9rem, 2.5vw, 1.1rem); color: #4a5568; font-weight: 600; margin-bottom: 5px; }
     .score-value { font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: 700; color: var(--primary-color); text-shadow: 1px 1px 2px rgba(0,0,0,0.05); }
     
-    .score-card.total-score { background: linear-gradient(135deg, var(--primary-dark), var(--primary-color)); color: white; border: none; }
-    .score-card.total-score .score-title { color: rgba(255,255,255,0.9); font-size: clamp(1rem, 3vw, 1.3rem);}
-    .score-card.total-score .score-value { color: var(--secondary-color); font-size: clamp(2.2rem, 6vw, 3rem); text-shadow: 2px 2px 5px rgba(0,0,0,0.4); }
-    .score-card.result-score { background: linear-gradient(135deg, var(--secondary-color), var(--secondary-light)); color: var(--primary-dark); border: none; box-shadow: 0 10px 20px rgba(245, 158, 11, 0.2); }
+    /* สลับสีการ์ดสรุปผล */
+    .score-card.total-score { background: linear-gradient(135deg, var(--secondary-color), var(--secondary-light)); color: var(--primary-dark); border: none; }
+    .score-card.total-score .score-title { color: var(--primary-dark); font-size: clamp(1rem, 3vw, 1.3rem); font-weight: 700;}
+    .score-card.total-score .score-value { color: var(--primary-dark); font-size: clamp(2.2rem, 6vw, 3rem); text-shadow: 1px 1px 3px rgba(255,255,255,0.4); }
+    
+    .score-card.result-score { background: linear-gradient(135deg, #93c5fd, #bfdbfe); color: var(--primary-dark); border: none; box-shadow: 0 10px 20px rgba(147, 197, 253, 0.3); }
     .score-card.result-score .score-title { color: var(--primary-dark); font-size: clamp(1rem, 3vw, 1.3rem); font-weight: 700;}
     .score-card.result-score .score-value { color: var(--primary-dark); font-size: clamp(1.6rem, 4.5vw, 2.2rem); text-shadow: none; line-height: 1.2; font-weight: 800;}
     
     /* Buttons */
     .btn-custom { border-radius: 15px; padding: clamp(10px, 3vw, 12px); font-size: clamp(1rem, 3vw, 1.2rem); font-weight: 600; transition: all 0.3s; }
-    .btn-login { background-color: var(--primary-color); color: white; border: none; box-shadow: 0 5px 15px rgba(120, 53, 15, 0.2); }
+    .btn-login { background-color: var(--primary-color); color: white; border: none; box-shadow: 0 5px 15px rgba(21, 50, 101, 0.3); }
     .btn-login:hover { background-color: var(--primary-dark); color: white; transform: translateY(-3px); }
     .btn-facebook { background: linear-gradient(90deg, #1877F2, #145dbf); color: white; }
     .btn-facebook:hover { background: #145dbf; color: white; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(24, 119, 242, 0.4); }
-    .btn-danger-custom { background: linear-gradient(90deg, #ff416c, #ff4b2b); color: white; border: none; }
-    .btn-danger-custom:hover { background: linear-gradient(90deg, #ff4b2b, #ff416c); color: white; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255, 65, 108, 0.4); }
+    .btn-danger-custom { background: linear-gradient(90deg, #ef4444, #dc2626); color: white; border: none; }
+    .btn-danger-custom:hover { background: linear-gradient(90deg, #dc2626, #ef4444); color: white; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(239, 68, 68, 0.4); }
     
-    .btn-admin-float { position: fixed; bottom: 15px; left: 15px; background: rgba(255, 255, 255, 0.9); color: var(--primary-color); border: 2px solid rgba(120, 53, 15, 0.05); border-radius: 20px; padding: 8px 15px; font-size: 0.95rem; font-weight: 600; cursor: pointer; backdrop-filter: blur(10px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: all 0.3s; z-index: 1000; }
-    .btn-admin-float:hover { background: var(--primary-color); color: var(--secondary-color); transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
+    .btn-admin-float { position: fixed; bottom: 15px; left: 15px; background: rgba(255, 255, 255, 0.9); color: var(--primary-color); border: 2px solid rgba(21, 50, 101, 0.1); border-radius: 20px; padding: 8px 15px; font-size: 0.95rem; font-weight: 600; cursor: pointer; backdrop-filter: blur(10px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); transition: all 0.3s; z-index: 1000; }
+    .btn-admin-float:hover { background: var(--primary-color); color: white; transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
     
     .footer { margin-top: auto; background-color: var(--primary-dark); color: white; text-align: center; padding: 15px 10px; font-size: clamp(0.8rem, 2vw, 0.95rem); letter-spacing: 0.5px; border-top: 3px solid var(--secondary-color); position: relative; z-index: 10; }
     
@@ -105,7 +108,7 @@
     
     <div class="header-content">
       <div class="header-title pt-1">🎯 ระบบรายงานผลคะแนนสอบรายบุคคล</div> 
-      <div class="header-subtitle mt-2 fw-bold" style="color: var(--secondary-color);">✨ นักเรียนห้องเรียนปกติ และนักเรียนความสามารถพิเศษ ✨</div>
+      <div class="header-subtitle mt-2 fw-bold" style="color: var(--secondary-light);">✨ นักเรียนห้องเรียนปกติ และนักเรียนความสามารถพิเศษ ✨</div>
       <div class="header-subtitle mt-1">ระดับชั้นมัธยมศึกษาปีที่ 1 และ 4</div>
       <div class="header-subtitle mt-1 fw-bold">โรงเรียนปราจิณราษฎรอำรุง</div>
     </div>
@@ -145,8 +148,8 @@
           <h4 class="text-center mb-4" style="font-weight: 700; color: var(--primary-color); font-size: clamp(1.2rem, 4vw, 1.5rem);">👨‍💻 ผู้ดูแลระบบ (Admin)</h4>
           
           <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
-            <div class="mb-3"><input type="text" class="form-control fs-6 p-3" id="adminUser" placeholder="👤 Username" required style="border-radius: 12px;"></div>
-            <div class="mb-4"><input type="password" class="form-control fs-6 p-3" id="adminPass" placeholder="🔑 Password" required style="border-radius: 12px;"></div>
+            <div class="mb-3"><input type="text" class="form-control fs-6 p-3" id="adminUser" placeholder="👤 Username" required style="border-radius: 12px; border: 1px solid var(--primary-color);"></div>
+            <div class="mb-4"><input type="password" class="form-control fs-6 p-3" id="adminPass" placeholder="🔑 Password" required style="border-radius: 12px; border: 1px solid var(--primary-color);"></div>
             <button type="submit" class="btn w-100 mb-3 btn-custom fw-bold" style="background-color: var(--secondary-color); color: var(--primary-dark);">🔓 เข้าสู่ระบบจัดการ</button>
             <button type="button" class="btn btn-secondary w-100 btn-custom" onclick="showSearch()">⬅️ กลับหน้าหลัก</button>
           </form>
@@ -154,9 +157,9 @@
           <div id="adminControlPanel" style="display: none;">
             <div class="mb-3">
               <label class="form-label fw-bold" style="color: var(--primary-color);">📢 แจ้งข่าว / อัปเดตประกาศระบบ</label>
-              <textarea class="form-control" id="adminAnnounceText" rows="4" placeholder="พิมพ์ข้อความที่ต้องการแจ้งเตือน... (ปล่อยว่างหากต้องการลบประกาศ)" style="border-radius: 12px;"></textarea>
+              <textarea class="form-control" id="adminAnnounceText" rows="4" placeholder="พิมพ์ข้อความที่ต้องการแจ้งเตือน... (ปล่อยว่างหากต้องการลบประกาศ)" style="border-radius: 12px; border: 1px solid var(--primary-color);"></textarea>
             </div>
-            <button class="btn btn-success w-100 mb-3 btn-custom fw-bold" onclick="saveAnnouncement()">💾 บันทึกประกาศขึ้นระบบ</button>
+            <button class="btn btn-success w-100 mb-3 btn-custom fw-bold" style="background-color: #10b981; border: none;" onclick="saveAnnouncement()">💾 บันทึกประกาศขึ้นระบบ</button>
             <hr>
             <button class="btn btn-login w-100 mb-3 btn-custom fw-bold" onclick="openDatabase()">🗄️ เปิดฐานข้อมูล (Google Sheet)</button>
             <button class="btn btn-danger-custom w-100 btn-custom" onclick="logoutAdmin()">🚪 ออกจากระบบแอดมิน</button>
@@ -198,7 +201,7 @@
   </footer>
 
   <script>
-    // 🛑 อย่าลืมใส่ Web App URL เดิมที่คุณ Deploy ไว้แล้วตรงนี้นะครับ 🛑
+    // 🛑 อย่าลืมใส่ Web App URL ที่ Deploy แล้วตรงนี้นะครับ 🛑
     const API_URL = "https://script.google.com/macros/s/AKfycbxf0MGu6j93VwMuVlVp220E35cvDjiwnkb_G-zqW6n97zimadLPydOZDqoi24CSgSA/exec";
 
     let currentUser = '';
@@ -282,7 +285,7 @@
         document.getElementById('adminControlPanel').style.display = 'block';
         fetchAnnouncement(); 
       } else {
-        Swal.fire({ icon: 'error', title: '❌ เข้าสู่ระบบล้มเหลว', text: res.message, confirmButtonColor: '#78350f' });
+        Swal.fire({ icon: 'error', title: '❌ เข้าสู่ระบบล้มเหลว', text: res.message, confirmButtonColor: '#153265' });
       }
     }
 
@@ -296,7 +299,7 @@
         Swal.fire({ icon: 'success', title: '✅ บันทึกสำเร็จ!', text: 'อัปเดตประกาศเรียบร้อยแล้ว', timer: 1500, showConfirmButton: false });
         fetchAnnouncement(); 
       } else {
-        Swal.fire({ icon: 'error', title: 'ข้อผิดพลาด', text: res.message, confirmButtonColor: '#78350f' });
+        Swal.fire({ icon: 'error', title: 'ข้อผิดพลาด', text: res.message, confirmButtonColor: '#153265' });
       }
     }
 
@@ -313,7 +316,7 @@
         html: '<b>ระบบกำลังสืบค้นข้อมูลให้ครับ</b>',
         allowOutsideClick: false,
         background: '#fff',
-        backdrop: `rgba(120,53,15,0.4)`, // เงาสีน้ำตาล
+        backdrop: `rgba(21, 50, 101, 0.4)`, /* สีน้ำเงินโปร่งแสง */
         didOpen: () => { Swal.showLoading(); }
       });
 
@@ -324,7 +327,7 @@
         renderDashboard(response.results); 
         showDashboard();
       } else {
-        Swal.fire({ icon: 'error', title: '❌ อ๊ะ! ไม่พบข้อมูล', text: response.message, confirmButtonColor: '#78350f' }); 
+        Swal.fire({ icon: 'error', title: '❌ อ๊ะ! ไม่พบข้อมูล', text: response.message, confirmButtonColor: '#153265' }); 
       }
     }
 
@@ -341,7 +344,7 @@
         let totalScoreCardHtml = ''; let resultCardHtml = '';
         
         if(sheetName) {
-           infoHtml += `<div class="mb-3 border-bottom pb-2"><span class="text-secondary fw-bold" style="font-size: clamp(0.9rem, 2.5vw, 1rem);">ระดับชั้น/แผนการเรียน :</span> <strong style="color: var(--primary-dark); background: var(--secondary-color); padding: 5px 12px; border-radius: 8px; font-size: clamp(1rem, 3vw, 1.25rem);" class="ms-1 ms-md-2 d-inline-block mt-1 mt-sm-0">🎯 ${sheetName}</strong></div>`;
+           infoHtml += `<div class="mb-3 border-bottom pb-2"><span class="text-secondary fw-bold" style="font-size: clamp(0.9rem, 2.5vw, 1rem);">ระดับชั้น/แผนการเรียน :</span> <strong style="color: var(--primary-dark); background: var(--secondary-light); padding: 5px 12px; border-radius: 8px; font-size: clamp(1rem, 3vw, 1.25rem);" class="ms-1 ms-md-2 d-inline-block mt-1 mt-sm-0">🎯 ${sheetName}</strong></div>`;
         }
 
         const infoFields = ['ระดับชั้น/โครงการ', 'รหัสประจำตัวประชาชน', 'รหัส', 'ชื่อ-สกุล', 'โรงเรียนเดิม']; 
@@ -372,8 +375,8 @@
         if(totalScoreCardHtml || resultCardHtml) summaryHtml = `<div class="summary-grid">${totalScoreCardHtml}${resultCardHtml}</div>`;
 
         finalHtml += `
-          <div class="result-block mb-4 p-3 rounded-4" style="background: rgba(255,255,255,0.7); border: 2px dashed var(--primary-color);">
-            <div class="mb-4 bg-white p-3 p-md-4 rounded-4 border shadow-sm">
+          <div class="result-block mb-4 p-3 rounded-4" style="background: rgba(255,255,255,0.7); border: 2px dashed var(--accent-brown);">
+            <div class="mb-4 bg-white p-3 p-md-4 rounded-4 border shadow-sm" style="border-color: var(--primary-color) !important;">
               <div class="d-flex align-items-center mb-3 pb-2 border-bottom border-2" style="border-color: var(--primary-color) !important;">
                 <h4 class="m-0" style="color: var(--primary-color); font-weight: 700; font-size: clamp(1.1rem, 3.5vw, 1.4rem);">👤 ข้อมูลนักเรียน</h4>
               </div>
@@ -399,8 +402,8 @@
         text: "ข้อมูลของคุณจะถูกล้างเพื่อความปลอดภัย",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#d33',
-        cancelButtonColor: '#78350f', 
+        confirmButtonColor: '#dc2626',
+        cancelButtonColor: '#153265', 
         confirmButtonText: 'ปิดหน้าต่าง',
         cancelButtonText: 'ยกเลิก'
       }).then((result) => {
