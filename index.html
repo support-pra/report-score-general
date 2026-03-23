@@ -140,18 +140,18 @@
         
         <div id="publicAnnouncementBox" class="announcement-box">
           <div class="d-flex align-items-center mb-2">
-            <span class="fs-4 me-2">📢</span> <h5 class="fw-bold m-0" style="color: var(--primary-dark);">ประกาศจากระบบ!</h5>
+            <span class="fs-4 me-2">📢</span> <h5 class="fw-bold m-0" style="color: var(--primary-dark);">ประกาศจากระบบ</h5>
           </div>
           <div id="publicAnnouncementText" class="text-secondary fw-bold" style="white-space: pre-wrap; font-size: 0.95rem;">กำลังโหลดประกาศ...</div>
         </div>
 
         <div class="card card-custom p-4 pb-5">
-          <h4 class="text-center mb-4" style="color: var(--primary-color); font-weight: 700; font-size: clamp(1.1rem, 4vw, 1.4rem);">🔐 เข้าสู่ระบบด้วยม้วนกระดาษขวัญ</h4>
+          <h4 class="text-center mb-4" style="color: var(--primary-color); font-weight: 700; font-size: clamp(1.1rem, 4vw, 1.4rem);">🔐 เข้าสู่ระบบเพื่อตรวจสอบคะแนน</h4>
           <form id="searchForm" onsubmit="handleSearch(event)">
             <div class="mb-4">
-              <input type="text" class="form-control form-control-lg text-center fs-5" id="studentIdInput" placeholder="📜 กรอกเลขประจำตัวประชาชน" required style="border-radius: 12px; border: 1px solid var(--primary-color); background-color: var(--secondary-light);">
+              <input type="text" class="form-control form-control-lg text-center fs-5" id="studentIdInput" placeholder="✍️ กรอกเลขประจำตัวประชาชน" required style="border-radius: 12px; border: 1px solid var(--primary-color); background-color: var(--secondary-light);">
             </div>
-            <button type="submit" class="btn btn-login btn-custom w-100 mb-2">🚀 ค้นหาข้อมูลผลสอบ</button>
+            <button type="submit" class="btn btn-login btn-custom w-100 mb-2">🚀 เข้าสู่ระบบเพื่อตรวจสอบคะแนน</button>
           </form>
         </div>
       </div>
@@ -160,24 +160,24 @@
     <div id="adminSection" class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-5">
         <div class="card card-custom p-4">
-          <h4 class="text-center mb-4" style="font-weight: 700; color: var(--primary-color); font-size: clamp(1.1rem, 4vw, 1.4rem);">👨‍💻 ผู้ดูแลปราสาททวารวดี (Admin)</h4>
+          <h4 class="text-center mb-4" style="font-weight: 700; color: var(--primary-color); font-size: clamp(1.1rem, 4vw, 1.4rem);">👨‍💻 ผู้ดูแลระบบ (Admin)</h4>
           
           <form id="adminLoginForm" onsubmit="handleAdminLogin(event)">
             <div class="mb-3"><input type="text" class="form-control fs-6 p-3" id="adminUser" placeholder="👤 Username" required style="border-radius: 10px; border: 1px solid var(--color-bark-brown);"></div>
             <div class="mb-4"><input type="password" class="form-control fs-6 p-3" id="adminPass" placeholder="🔑 Password" required style="border-radius: 10px; border: 1px solid var(--color-bark-brown);"></div>
-            <button type="submit" class="btn w-100 mb-3 btn-custom fw-bold" style="background-color: var(--color-bamboo-green); color: white;">🔓 เข้าสู่ห้องจัดการ</button>
+            <button type="submit" class="btn w-100 mb-3 btn-custom fw-bold" style="background-color: var(--color-bamboo-green); color: white;">🔓 เข้าสู่ระบบจัดการ</button>
             <button type="button" class="btn btn-secondary w-100 btn-custom" style="background-color: #e2e8f0; color: #333;" onclick="showSearch()">⬅️ กลับหน้าหลัก</button>
           </form>
 
           <div id="adminControlPanel" style="display: none;">
             <div class="mb-3">
-              <label class="form-label fw-bold" style="color: var(--primary-color);">📢 จารึกข้อความประกาศระบบ</label>
-              <textarea class="form-control" id="adminAnnounceText" rows="4" placeholder="จำหลักข้อความแจ้งเตือน... (ปล่อยว่างหากต้องการลบจารึก)" style="border-radius: 10px; border: 1px solid var(--color-bark-brown);"></textarea>
+              <label class="form-label fw-bold" style="color: var(--primary-color);">📢 แจ้งข่าว / อัปเดตประกาศระบบ</label>
+              <textarea class="form-control" id="adminAnnounceText" rows="4" placeholder="พิมพ์ข้อความที่ต้องการแจ้งเตือน... (ปล่อยว่างหากต้องการลบประกาศ)" style="border-radius: 10px; border: 1px solid var(--color-bark-brown);"></textarea>
             </div>
-            <button class="btn btn-success w-100 mb-3 btn-custom fw-bold" style="background-color: var(--color-bodhi-green); border: none;" onclick="saveAnnouncement()">💾 บันทึกจารึกลงระบบ</button>
+            <button class="btn btn-success w-100 mb-3 btn-custom fw-bold" style="background-color: var(--color-bodhi-green); border: none;" onclick="saveAnnouncement()">💾 บันทึกประกาศขึ้นระบบ</button>
             <hr>
-            <button class="btn btn-login w-100 mb-3 btn-custom fw-bold" onclick="openDatabase()">🗄️ เปิดฐานข้อมูลจารึก (Sheet)</button>
-            <button class="btn btn-danger-custom w-100 btn-custom" onclick="logoutAdmin()">🚪 ออกจากปราสาทแอดมิน</button>
+            <button class="btn btn-login w-100 mb-3 btn-custom fw-bold" onclick="openDatabase()">🗄️ เปิดฐานข้อมูล (Google Sheet)</button>
+            <button class="btn btn-danger-custom w-100 btn-custom" onclick="logoutAdmin()">🚪 ออกจากระบบแอดมิน</button>
           </div>
         </div>
       </div>
@@ -199,7 +199,7 @@
 
           <div class="row justify-content-center">
             <div class="col-12 col-md-8 text-center">
-              <button class="btn btn-danger-custom btn-custom w-100 shadow-sm" onclick="logout()">🚪 ปิดหน้านี้</button>
+              <button class="btn btn-danger-custom btn-custom w-100 shadow-sm" onclick="logout()">🚪 ปิดหน้าต่าง</button>
             </div>
           </div>
 
@@ -209,10 +209,10 @@
 
   </div>
 
-  <button id="btnAdminFloat" class="btn-admin-float" onclick="showAdminLogin()">⚙️ ปราสาทแอดมิน</button>
+  <button id="btnAdminFloat" class="btn-admin-float" onclick="showAdminLogin()">⚙️ สำหรับผู้ดูแลระบบ</button>
 
   <footer class="footer">
-    © 2026 งานรับนักเรียน Create by กลุ่มงานเทคโนโลยี | รุ่งอรุณแห่งศรีมโหสถ
+    © 2026 งานรับนักเรียน Create by กลุ่มงานเทคโนโลยี | โรงเรียนปราจิณราษฎรอำรุง
   </footer>
 
   <script>
@@ -235,7 +235,7 @@
         });
         return await response.json();
       } catch (error) {
-        return { success: false, message: "เชื่อมต่อฐานข้อมูลจารึกล้มเหลว: " + error.message };
+        return { success: false, message: "เชื่อมต่อฐานข้อมูลล้มเหลว: " + error.message };
       }
     }
 
@@ -289,7 +289,7 @@
       e.preventDefault();
       currentUser = document.getElementById('adminUser').value;
       currentPass = document.getElementById('adminPass').value;
-      Swal.fire({ title: 'กำลังตรวจสอบจารึกสิทธิ์...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); }});
+      Swal.fire({ title: 'กำลังตรวจสอบสิทธิ์...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); }});
       
       const res = await callAPI({ action: "checkAdmin", user: currentUser, pass: currentPass });
       
@@ -300,21 +300,21 @@
         document.getElementById('adminControlPanel').style.display = 'block';
         fetchAnnouncement(); 
       } else {
-        Swal.fire({ icon: 'error', title: '❌ จารึกสิทธิ์ไม่ถูกต้อง', text: res.message, confirmButtonColor: '#153265' });
+        Swal.fire({ icon: 'error', title: '❌ เข้าสู่ระบบล้มเหลว', text: res.message, confirmButtonColor: '#153265' });
       }
     }
 
     async function saveAnnouncement() {
       const text = document.getElementById('adminAnnounceText').value;
-      Swal.fire({ title: 'กำลังจำหลักจารึก...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); }});
+      Swal.fire({ title: 'กำลังบันทึก...', allowOutsideClick: false, didOpen: () => { Swal.showLoading(); }});
       
       const res = await callAPI({ action: "saveAnnouncement", text: text, user: currentUser, pass: currentPass });
       
       if(res.success) {
-        Swal.fire({ icon: 'success', title: '✅ จำหลักสำเร็จ!', text: 'อัปเดตจารึกประกาศเรียบร้อย', timer: 1500, showConfirmButton: false });
+        Swal.fire({ icon: 'success', title: '✅ บันทึกสำเร็จ!', text: 'อัปเดตประกาศเรียบร้อยแล้ว', timer: 1500, showConfirmButton: false });
         fetchAnnouncement(); 
       } else {
-        Swal.fire({ icon: 'error', title: 'ข้อผิดพลาดในการจำหลัก', text: res.message, confirmButtonColor: '#153265' });
+        Swal.fire({ icon: 'error', title: 'ข้อผิดพลาดในการบันทึก', text: res.message, confirmButtonColor: '#153265' });
       }
     }
 
@@ -327,8 +327,8 @@
       const studentId = document.getElementById('studentIdInput').value;
       
       Swal.fire({
-        title: 'กำลังสืบค้นจารึกผลสอบ... 🚀',
-        html: '<b>ระบบกำลังค้นหาจารึกคะแนนให้ครับ</b>',
+        title: 'กำลังค้นหาข้อมูล... 🚀',
+        html: '<b>ระบบกำลังสืบค้นข้อมูลให้ครับ</b>',
         allowOutsideClick: false,
         background: '#fff',
         backdrop: `rgba(21, 50, 101, 0.4)`,
@@ -338,11 +338,11 @@
       const response = await callAPI({ action: "search", studentId: studentId });
 
       if (response.success) {
-        Swal.fire({ icon: 'success', title: '🎉 สืบค้นสำเร็จ!', text: `พบจารึกรายงานคะแนนแล้ว`, timer: 1500, showConfirmButton: false });
+        Swal.fire({ icon: 'success', title: '🎉 ค้นหาสำเร็จ!', text: `พบข้อมูลรายงานคะแนนแล้ว`, timer: 1500, showConfirmButton: false });
         renderDashboard(response.results); 
         showDashboard();
       } else {
-        Swal.fire({ icon: 'error', title: '❌ ไม่พบจารึกข้อมูล', text: response.message, confirmButtonColor: '#153265' }); 
+        Swal.fire({ icon: 'error', title: '❌ ไม่พบข้อมูล', text: response.message, confirmButtonColor: '#153265' }); 
       }
     }
 
@@ -359,7 +359,7 @@
         let totalScoreCardHtml = ''; let resultCardHtml = '';
         
         if(sheetName) {
-           infoHtml += `<div class="mb-3 border-bottom pb-2"><span class="text-secondary fw-bold" style="font-size: clamp(0.9rem, 2.5vw, 1rem);">จารึกรอบการสอบ :</span> <strong style="color: var(--primary-dark); background: var(--secondary-color); padding: 5px 12px; border-radius: 8px; font-size: clamp(1rem, 3vw, 1.25rem);" class="ms-1 ms-md-2 d-inline-block mt-1 mt-sm-0">🎯 ${sheetName}</strong></div>`;
+           infoHtml += `<div class="mb-3 border-bottom pb-2"><span class="text-secondary fw-bold" style="font-size: clamp(0.9rem, 2.5vw, 1rem);">ระดับชั้น/แผนการเรียน :</span> <strong style="color: var(--primary-dark); background: var(--secondary-color); padding: 5px 12px; border-radius: 8px; font-size: clamp(1rem, 3vw, 1.25rem);" class="ms-1 ms-md-2 d-inline-block mt-1 mt-sm-0">🎯 ${sheetName}</strong></div>`;
         }
 
         const infoFields = ['ระดับชั้น/โครงการ', 'รหัสประจำตัวประชาชน', 'รหัส', 'ชื่อ-สกุล', 'โรงเรียนเดิม']; 
@@ -373,15 +373,15 @@
           if(!infoFields.includes(key) && data[key] !== undefined) {
             let scoreValue = data[key] === "" ? "-" : data[key];
             if(key.includes("รวม")) {
-              totalScoreCardHtml = `<div class="score-card total-score"><div class="score-title">🐘 ${key}</div><div class="score-value">${scoreValue}</div></div>`;
+              totalScoreCardHtml = `<div class="score-card total-score"><div class="score-title">🏆 ${key}</div><div class="score-value">${scoreValue}</div></div>`;
             } else if(key.includes("ผลการสอบ") || key.includes("ผลการประเมิน")) {
-              resultCardHtml = `<div class="score-card result-score"><div class="score-title">🌿 ${key}</div><div class="score-value">${scoreValue}</div></div>`;
+              resultCardHtml = `<div class="score-card result-score"><div class="score-title">📌 ${key}</div><div class="score-value">${scoreValue}</div></div>`;
             } else {
               let icon = '📝';
               if(key.includes("วิทย์")) icon = '🔬';
               if(key.includes("คณิต")) icon = '🔢';
               if(key.includes("อังกฤษ")) icon = '🔤'; 
-              if(key.includes("สัมภาษณ์") || key.includes("ปฏิบัติ") || key.includes("ความสามารถ")) icon = '🎋'; 
+              if(key.includes("สัมภาษณ์") || key.includes("ปฏิบัติ") || key.includes("ความสามารถ")) icon = '🌟'; 
               cardsHtml += `<div class="score-card"><div class="score-title">${icon} ${key}</div><div class="score-value">${scoreValue}</div></div>`;
             }
           }
@@ -393,13 +393,13 @@
           <div class="result-block mb-4 p-3 rounded-4" style="background: rgba(255,255,255,0.7); border: 2px dashed var(--accent-brown);">
             <div class="mb-4 bg-white p-3 p-md-4 rounded-4 border shadow-sm" style="border-color: var(--primary-color) !important;">
               <div class="d-flex align-items-center mb-3 pb-2 border-bottom border-2" style="border-color: var(--primary-color) !important;">
-                <h4 class="m-0" style="color: var(--primary-color); font-weight: 700; font-size: clamp(1.1rem, 3.5vw, 1.4rem);">👤 จารึกข้อมูลโพธิ์ศรี</h4>
+                <h4 class="m-0" style="color: var(--primary-color); font-weight: 700; font-size: clamp(1.1rem, 3.5vw, 1.4rem);">👤 ข้อมูลนักเรียน</h4>
               </div>
               ${infoHtml}
             </div>
             
             <div class="d-flex align-items-center mb-3 pb-2 border-bottom border-2" style="border-color: var(--primary-color) !important;">
-              <h4 class="m-0" style="color: var(--primary-color); font-weight: 700; font-size: clamp(1.1rem, 3.5vw, 1.4rem);">📊 จารึกรายงานผลสอบ</h4>
+              <h4 class="m-0" style="color: var(--primary-color); font-weight: 700; font-size: clamp(1.1rem, 3.5vw, 1.4rem);">📊 รายงานคะแนนสอบ</h4>
             </div>
             
             <div class="score-grid">${cardsHtml}</div>
@@ -413,13 +413,13 @@
 
     function logout() {
       Swal.fire({
-        title: 'ต้องการปิดจารึกหน้านี้? 🚪',
+        title: 'ต้องการปิดหน้าต่าง? 🚪',
         text: "ข้อมูลของคุณจะถูกล้างเพื่อความปลอดภัย",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#dc2626',
         cancelButtonColor: '#153265', 
-        confirmButtonText: 'ปิดจารึก',
+        confirmButtonText: 'ปิดหน้าต่าง',
         cancelButtonText: 'ยกเลิก'
       }).then((result) => {
         if (result.isConfirmed) {
